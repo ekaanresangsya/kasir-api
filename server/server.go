@@ -10,6 +10,8 @@ func Start() {
 	log.Print("Starting server ...")
 
 	config := LoadConfig()
+	fmt.Println(config.DBConn)
+	fmt.Println(config.ServerPort)
 
 	db, err := database.InitDB(config.DBConn)
 	if err != nil {
