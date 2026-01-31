@@ -4,6 +4,7 @@ import (
 	"crud-categories/internal/database"
 	"fmt"
 	"log"
+	"os"
 )
 
 func Start() {
@@ -12,6 +13,8 @@ func Start() {
 	config := LoadConfig()
 	fmt.Println(config.DBConn)
 	fmt.Println(config.ServerPort)
+	fmt.Println(os.Getenv("DB_CONN"))
+	fmt.Println(os.Getenv("RAILWAY_SERVICE_NAME"))
 
 	db, err := database.InitDB(config.DBConn)
 	if err != nil {
