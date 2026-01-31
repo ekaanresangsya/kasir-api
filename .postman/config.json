@@ -1,0 +1,15 @@
+{
+  "workspace": {
+    "id": "8b6424fd-2934-43c9-8045-e453e3d3550b"
+  },
+  "entities": {
+    "environments": [],
+    "flows": [],
+    "globals": [],
+    "mocks": [],
+    "specs": [],
+    "collections": [
+      "../codeWithUmam.postman_collection.json"
+    ]
+  }
+}
