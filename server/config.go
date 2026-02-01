@@ -33,8 +33,6 @@ func LoadConfig() *Config {
 	if err := viper.Unmarshal(&config); err != nil {
 		fmt.Printf("error unmarshal config %v\n", err)
 	}
-	fmt.Println("config setelah unmarshal")
-	fmt.Println(config)
 
 	return &config
 }
