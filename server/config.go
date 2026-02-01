@@ -1,7 +1,7 @@
 package server
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -20,17 +20,21 @@ func LoadConfig() *Config {
 
 	var config Config
 	bindSystemEnv(config)
+	fmt.Println("config setelah bind system env")
+	fmt.Println(config)
 
 	if _, err := os.Stat(".env"); err == nil {
 		viper.SetConfigFile(".env")
 		if err = viper.ReadInConfig(); err != nil {
-			log.Println("error reading config file, using system env", err)
+			fmt.Printf("error reading config file, using system env %v\n", err)
 		}
 	}
 
 	if err := viper.Unmarshal(&config); err != nil {
-		log.Fatalf("unable to load config: %v", err)
+		fmt.Printf("error unmarshal config %v\n", err)
 	}
+	fmt.Println("config setelah unmarshal")
+	fmt.Println(config)
 
 	return &config
 }
