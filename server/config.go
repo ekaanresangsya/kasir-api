@@ -15,19 +15,19 @@ type Config struct {
 }
 
 func LoadConfig() *Config {
-	viper.AutomaticEnv()
+	// viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	var config Config
-	// bindSystemEnv(config)
-	// fmt.Println("config setelah bind system env")
-	// fmt.Println(config)
+	bindSystemEnv(config)
 
 	if _, err := os.Stat(".env"); err == nil {
 		viper.SetConfigFile(".env")
 		if err = viper.ReadInConfig(); err != nil {
 			fmt.Printf("error reading config file, using system env %v\n", err)
 		}
+	} else {
+		fmt.Printf("file .env not found, using system env %v\n", err)
 	}
 
 	if err := viper.Unmarshal(&config); err != nil {
