@@ -1,6 +1,6 @@
 package main
 
-import "crud-categories/server"
+import "kasir-api/server"
 
 func main() {
 	server.Start()

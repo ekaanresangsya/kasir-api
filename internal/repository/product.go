@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"crud-categories/internal/model"
 	"database/sql"
+	"kasir-api/internal/model"
 )
 
 type ProductRepository struct {
@@ -13,12 +13,18 @@ func NewProductRepository(db *sql.DB) *ProductRepository {
 	return &ProductRepository{db: db}
 }
 
-func (r *ProductRepository) GetAll() ([]model.Product, error) {
+func (r *ProductRepository) GetAll(req model.GetProductReq) ([]model.Product, error) {
 	query := `SELECT p.id, p.name, p.stock, p.price, p.category_id, c.id, c.name, c.description
 				FROM products p
 				JOIN categories c ON p.category_id = c.id`
 
-	rows, err := r.db.Query(query)
+	args := []any{}
+	if req.Name != "" {
+		query += " WHERE p.name ILIKE $1"
+		args = append(args, "%"+req.Name+"%")
+	}
+
+	rows, err := r.db.Query(query, args...)
 	if err != nil {
 		return nil, err
 	}

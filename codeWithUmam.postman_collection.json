@@ -256,7 +256,7 @@
   "variable": [
     {
       "key": "host",
-      "value": "https://crud-categories-production.up.railway.app"
+      "value": "https://kasir-api-production.up.railway.app"
     },
     {
       "key": "host_local",

@@ -1,11 +1,11 @@
 package server
 
 import (
-	"crud-categories/internal/handler"
-	"crud-categories/internal/model"
-	"crud-categories/internal/repository"
-	"crud-categories/internal/service"
 	"database/sql"
+	"kasir-api/internal/handler"
+	"kasir-api/internal/model"
+	"kasir-api/internal/repository"
+	"kasir-api/internal/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +21,10 @@ func InitRouter(db *sql.DB) *gin.Engine {
 	productRepo := repository.NewProductRepository(db)
 	productService := service.NewProductService(productRepo, categoryRepo)
 	productHandler := handler.NewProductHandler(productService)
+
+	transactionRepo := repository.NewTransactionRepository(db)
+	transactionService := service.NewTransactionService(transactionRepo)
+	transactionHandler := handler.NewTransactionHandler(transactionService)
 
 	categories := router.Group("/categories")
 	{
@@ -38,6 +42,11 @@ func InitRouter(db *sql.DB) *gin.Engine {
 		products.POST("/", productHandler.Create)
 		products.PUT("/:id", productHandler.Update)
 		products.DELETE("/:id", productHandler.Delete)
+	}
+
+	api := router.Group("/api")
+	{
+		api.POST("/checkout", transactionHandler.Checkout)
 	}
 
 	router.GET("/health", func(c *gin.Context) {

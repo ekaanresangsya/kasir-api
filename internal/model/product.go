@@ -9,6 +9,10 @@ type Product struct {
 	Category   Category `json:"category"`
 }
 
+type GetProductReq struct {
+	Name string `form:"name"`
+}
+
 type CreateProductReq struct {
 	Name       string `json:"name" binding:"required"`
 	Stock      *int64 `json:"stock"`

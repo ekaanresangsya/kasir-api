@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"crud-categories/internal/model"
 	"database/sql"
+	"kasir-api/internal/model"
 )
 
 type CategoryRepository struct {

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"crud-categories/internal/model"
-	"crud-categories/internal/repository"
+	"kasir-api/internal/model"
+	"kasir-api/internal/repository"
 )
 
 type CategoryService struct {

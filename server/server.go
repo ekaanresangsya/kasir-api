@@ -1,8 +1,8 @@
 package server
 
 import (
-	"crud-categories/internal/database"
 	"fmt"
+	"kasir-api/internal/database"
 	"log"
 )
 

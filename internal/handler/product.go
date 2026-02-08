@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"crud-categories/internal/model"
-	"crud-categories/internal/service"
+	"fmt"
+	"kasir-api/internal/model"
+	"kasir-api/internal/service"
 	"net/http"
 	"strconv"
 
@@ -18,7 +19,16 @@ func NewProductHandler(productService *service.ProductService) *ProductHandler {
 }
 
 func (h *ProductHandler) GetAll(c *gin.Context) {
-	products, err := h.productService.GetAll()
+
+	req := model.GetProductReq{}
+	if err := c.ShouldBindQuery(&req); err != nil {
+		c.JSON(http.StatusBadRequest, model.Response{Message: err.Error()})
+		return
+	}
+
+	fmt.Println(req)
+
+	products, err := h.productService.GetAll(req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, model.Response{Message: err.Error()})
 		return

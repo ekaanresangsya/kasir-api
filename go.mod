@@ -1,4 +1,4 @@
-module crud-categories
+module kasir-api
 
 go 1.24.0
 

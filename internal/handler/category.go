@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"crud-categories/internal/model"
-	"crud-categories/internal/service"
+	"kasir-api/internal/model"
+	"kasir-api/internal/service"
 	"log"
 	"net/http"
 	"strconv"

@@ -5,7 +5,7 @@ This project is a simple CRUD application for managing Categories and Products.
 ## Base URLs
 
 - **Local Development**: `http://localhost:8181`
-- **Production**: `https://crud-categories-production.up.railway.app`
+- **Production**: `https://kasir-api-production.up.railway.app`
 
 ## Endpoints
 

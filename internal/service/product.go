@@ -1,8 +1,8 @@
 package service
 
 import (
-	"crud-categories/internal/model"
-	"crud-categories/internal/repository"
+	"kasir-api/internal/model"
+	"kasir-api/internal/repository"
 	"log"
 )
 
@@ -15,8 +15,8 @@ func NewProductService(productRepo *repository.ProductRepository, categoryRepo *
 	return &ProductService{productRepo: productRepo, categoryRepo: categoryRepo}
 }
 
-func (s *ProductService) GetAll() ([]model.Product, error) {
-	return s.productRepo.GetAll()
+func (s *ProductService) GetAll(req model.GetProductReq) ([]model.Product, error) {
+	return s.productRepo.GetAll(req)
 }
 
 func (s *ProductService) GetByID(id int) (*model.Product, error) {
