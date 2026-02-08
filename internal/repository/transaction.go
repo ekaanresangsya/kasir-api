@@ -124,7 +124,7 @@ func (r *TransactionRepository) CreateTransaction(req model.CheckoutRequest) (*m
 }
 
 func (r *TransactionRepository) GetTotalTransaction(startDate, endDate string) (int, int, error) {
-	query := `SELECT COUNT(id), SUM(total_amount)
+	query := `SELECT COUNT(id), COALESCE(SUM(total_amount), 0)
 		FROM transactions 
 		WHERE created_at::date BETWEEN $1 AND $2`
 
@@ -156,6 +156,9 @@ func (r *TransactionRepository) GetProductTerlaris(startDate, endDate string) (*
 	err := r.db.QueryRow(query, startDate, endDate).
 		Scan(&productTerlaris.Nama, &productTerlaris.QtyTerjual)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
 		log.Printf("error get product terlaris: %v", err)
 		return nil, err
 	}

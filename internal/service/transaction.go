@@ -65,7 +65,9 @@ func (s *TransactionService) GetReport(startDate, endDate string) (*model.Report
 	if err != nil {
 		return nil, err
 	}
-	resData.ProdukTerlaris = *productTerlaris
+	if productTerlaris != nil {
+		resData.ProdukTerlaris = *productTerlaris
+	}
 
 	return &resData, nil
 }
