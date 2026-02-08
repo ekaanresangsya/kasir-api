@@ -29,6 +29,14 @@ This project is a simple CRUD application for managing Categories and Products.
 | `PUT` | `/products/:id` | Update a product | `{"name": "string", "stock": int, "price": int, "category_id": int}` |
 | `DELETE` | `/products/:id` | Delete a product | - |
 
+### Transactions
+
+| Method | Endpoint | Description | Request Body | Query Params |
+| :--- | :--- | :--- | :--- | :--- |
+| `POST` | `/api/checkout` | Create a new transaction | `{"items": [{"product_id": int, "quantity": int}]}` | - |
+| `GET` | `/api/report/hari-ini` | Get report for today | - | - |
+| `GET` | `/api/report` | Get report with date range | - | `start_date` (YYYY-MM-DD), `end_date` (YYYY-MM-DD) |
+
 ## Postman Collection
 
 A Postman collection is included in this repository to help you test the endpoints.
